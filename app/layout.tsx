@@ -1,6 +1,7 @@
-
+import "@radix-ui/themes/styles.css";
 import "./globals.css";
 import NavBar from "./NavBar";
+import { Theme } from "@radix-ui/themes";
 
 
 
@@ -12,8 +13,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <Theme>
         <NavBar/>
-        {children}
+        <main className='p-5'>{children}</main>
+        </Theme>
       </body>
     </html>
   );
