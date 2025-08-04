@@ -2,8 +2,8 @@ import React from 'react'
 import { Box, Card, Flex, Heading, Text } from '@radix-ui/themes';
 import ReactMarkdown from 'react-markdown';
 import IssueStatusBadge from '@/app/components/IssueStatusBadge';
-import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
-import 'react-loading-skeleton/dist/skeleton.css'
+import { Skeleton } from '@/app/components';
+
 
 
 
