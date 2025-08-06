@@ -1,22 +1,20 @@
 'use client'
-import { Button, Callout, Text, TextField } from '@radix-ui/themes'
-import React, { useState } from "react";
-import SimpleMDE from "react-simplemde-editor";
-import "easymde/dist/easymde.min.css";
-import { useForm, Controller, SubmitHandler } from "react-hook-form"
-import { useFormStatus } from 'react-dom';
-import dynamic from 'next/dynamic';
-import axios from 'axios';
-import { useRouter } from 'next/navigation';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { createIssueSchema } from '@/app/validationSchemas';
-import { z } from 'zod';
 import ErrorMessage from '@/app/components/ErrorMessage';
 import Spinner from '@/app/components/Spinner';
+import { IssueSchema } from '@/app/validationSchemas';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { Issue } from '@prisma/client';
+import { Button, Callout, TextField } from '@radix-ui/themes';
+import axios from 'axios';
+import "easymde/dist/easymde.min.css";
+import dynamic from 'next/dynamic';
+import { useRouter } from 'next/navigation';
+import { useState } from "react";
+import { Controller, useForm } from "react-hook-form";
+import { z } from 'zod';
 
 
-type IssueFormData = z.infer<typeof createIssueSchema>;
+type IssueFormData = z.infer<typeof IssueSchema>;
 
 const SimpleMDEClient = dynamic(() => import('react-simplemde-editor'), {
   ssr: false
@@ -26,7 +24,7 @@ const IssueForm = ({issue}:{issue?: Issue}) => {
 
   const router = useRouter();  
   const {register, control, handleSubmit, formState: {errors}} = useForm<IssueFormData>({
-    resolver: zodResolver(createIssueSchema)
+    resolver: zodResolver(IssueSchema)
   });
   const [error, setError] = useState ('');
   const [isSubmitting, setSubmitting] = useState(false);
@@ -34,6 +32,9 @@ const IssueForm = ({issue}:{issue?: Issue}) => {
   const onSubmit= handleSubmit(async (data) => {
           try {
             setSubmitting(true);
+            if(issue)
+            await axios.patch('/api/issues/'+ issue.id, data);
+            else
             await axios.post('/api/issues', data)
             router.push('/issues');
           } catch (error) {
@@ -65,7 +66,8 @@ const IssueForm = ({issue}:{issue?: Issue}) => {
           )}
         />
          {<ErrorMessage>{errors.description?.message}</ErrorMessage>}           
-        <Button disabled={isSubmitting}>Submit New Issue {isSubmitting && <Spinner/>}</Button>
+        <Button disabled={isSubmitting}>
+          {issue ? 'Update Issue': 'Submit New Issue'}{' '} {isSubmitting && <Spinner/>}</Button>
       </form>
     </div>
   );
