@@ -5,6 +5,7 @@ import { Box, Grid } from '@radix-ui/themes';
 import delay from 'delay';
 import { notFound } from 'next/navigation';
 import IssueDetails from './IssueDetails';
+import DeleteIssueButton from './DeleteIssueButton';
 
 
 interface Props {
@@ -27,9 +28,12 @@ const EditIssuePage = async ({ params }: Props) => {
       <Grid columns={{ initial:"1", md: "2" }} gap='4'>
       <Box>
         <IssueDetails issue={issue}/>
-      </Box>
+      </Box>  
       <Box>
         <EditIssueButton issueID={issue.id}/>
+      </Box>
+      <Box>
+        <DeleteIssueButton issueID={issue.id}/>
       </Box>
       </Grid>
       
