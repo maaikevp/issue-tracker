@@ -4,6 +4,7 @@ import NavBar from "./NavBar";
 import { Theme, ThemePanel } from "@radix-ui/themes";
 import { Inter } from "next/font/google";
 import "./theme-config.css";
+import AuthProvider from "./auth/Provider";
 
 
 const inter = Inter({
@@ -20,10 +21,12 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.variable}>
       <body>
+        <AuthProvider>
           <Theme accentColor="lime">
-        <NavBar/>
+          <NavBar/>
         <main className='p-5'>{children}</main>
         </Theme>
+        </AuthProvider>
       </body>
     </html>
   );
