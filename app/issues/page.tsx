@@ -1,5 +1,5 @@
 import { prisma } from '@/prisma/client';
-import { Link} from '@radix-ui/themes'
+import { Container, Link} from '@radix-ui/themes'
 import React from 'react'
 import delay from 'delay';
 import IssueActions from './IssueActions';
@@ -9,11 +9,12 @@ import { IssueStatusBadge } from '@/app/components';
 
 const IssuesPage = async () => {
   const issues = await prisma.issue.findMany();
-  await delay(3000);
+  // await delay(3000);
 
   return (
     
-    <div>  
+    <div> 
+      <Container size="4"> 
       <IssueActions />     
     <Table.Root variant='surface' className='mt-5'>
 	<Table.Header>
@@ -35,6 +36,7 @@ const IssuesPage = async () => {
     ))}
     </Table.Body>
     </Table.Root>
+     </Container>
     </div>
   )
 }
