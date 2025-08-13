@@ -5,6 +5,7 @@ import { Theme, ThemePanel } from "@radix-ui/themes";
 import { Inter } from "next/font/google";
 import "./theme-config.css";
 import AuthProvider from "./auth/Provider";
+import QueryClientProvider from "./QueryClientProvider";
 
 
 const inter = Inter({
@@ -21,12 +22,14 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.variable}>
       <body>
+        <QueryClientProvider>
         <AuthProvider>
           <Theme accentColor="lime">
           <NavBar/>
         <main className='p-5'>{children}</main>
         </Theme>
         </AuthProvider>
+        </QueryClientProvider>
       </body>
     </html>
   );
