@@ -8,6 +8,7 @@ import axios from 'axios';
 import { useQuery } from '@tanstack/react-query';
 import error from 'next/error';
 import Skeleton from 'react-loading-skeleton';
+import toast, { Toaster } from "react-hot-toast";
 
 const AssigneeSelect = ({issue}: {issue: Issue}) => {
 
@@ -27,6 +28,7 @@ const AssigneeSelect = ({issue}: {issue: Issue}) => {
   
 
   return (
+    <>
     <div className="block-look" >
     <Flex className="block-look" width="180px">   
       <Select.Root
@@ -35,6 +37,7 @@ const AssigneeSelect = ({issue}: {issue: Issue}) => {
           await axios.patch('/api/issues/'+ issue.id, {
           assignedToUserId: userId === 'Unassigned' ? null : userId,
           })
+          .catch(() => { toast.error("Changes could not be saved") })
           setAssigneeField(userId)
           }}>
         <Select.Trigger placeholder="Assign..." />
@@ -49,8 +52,10 @@ const AssigneeSelect = ({issue}: {issue: Issue}) => {
             </Select.Group>            
         </Select.Content>
     </Select.Root>
+    <Toaster/>
     </Flex> 
     </div>
+    </>
   )
 
 
