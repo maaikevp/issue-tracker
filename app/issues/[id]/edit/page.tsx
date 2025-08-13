@@ -15,12 +15,12 @@ const IssueForm = dynamic(
 );
 
 interface Props {
-  params: { id: number }
+  params: { id: string}
 }
 
 const EditIssuePage = async ({ params }: Props) => {
-  const issue = await prisma.issue.findFirst({
-    where: { id: params.id }
+  const issue = await prisma.issue.findUnique({
+    where: { id: parseInt(params.id) }
   });
 
   if (!issue) notFound();
