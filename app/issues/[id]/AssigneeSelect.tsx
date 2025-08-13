@@ -3,13 +3,13 @@
 
 import { Flex, Select } from '@radix-ui/themes'
 import React, { useEffect, useState } from 'react'
-import { User } from '@prisma/client';
+import { Issue, User } from '@prisma/client';
 import axios from 'axios';
 import { useQuery } from '@tanstack/react-query';
 import error from 'next/error';
 import Skeleton from 'react-loading-skeleton';
 
-const AssigneeSelect = () => {
+const AssigneeSelect = ({issue}: {issue: Issue}) => {
 
     const {data: users, error, isLoading } = useQuery<User[]>({
         queryKey: ['users'],
@@ -21,26 +21,38 @@ const AssigneeSelect = () => {
 
     if (error) return null;      
 
+    const [assigneeField, setAssigneeField] = useState(issue.assignedToUserId || "Unassigned")
+
     if(isLoading) return <Skeleton width="180px"/>;
   
 
   return (
-    <div className="block-look">
+    <div className="block-look" >
     <Flex className="block-look" width="180px">   
-      <Select.Root >
+      <Select.Root
+          value={assigneeField}
+          onValueChange={async (userId) => {
+          await axios.patch('/api/issues/'+ issue.id, {
+          assignedToUserId: userId === 'Unassigned' ? null : userId,
+          })
+          setAssigneeField(userId)
+          }}>
         <Select.Trigger placeholder="Assign..." />
         <Select.Content>
             <Select.Group>
                 <Select.Label>Suggestions</Select.Label>
+                <Select.Item value="Unassigned">Unassigned</Select.Item>
                 {users?.map(user =>  (
-                    <Select.Item key={user.id} 
+                <Select.Item key={user.id} 
                     value={user.id}>{user.name}</Select.Item> )) }     
+                
             </Select.Group>            
         </Select.Content>
     </Select.Root>
     </Flex> 
     </div>
   )
+
 
 
 }
