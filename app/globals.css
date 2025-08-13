@@ -37,10 +37,13 @@ body {
 
 .block-look {
   display: block;
-  width: 100%;
+  width: 180px;
   border: none;  
+  /* justify-content: center; Horizontal alignment */
+  align-items: center;    /* Vertical alignment */
   /* padding: 14px 28px; */
   /* font-size: 16px; */
   cursor: pointer;
   text-align: center;
+ 
 }
