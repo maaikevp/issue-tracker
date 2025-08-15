@@ -3,11 +3,20 @@ import { Container, Link } from '@radix-ui/themes';
 import  IssueActions from './IssueActions';
 import { IssueStatusBadge } from '@/app/components';
 import { Table } from '@radix-ui/themes';
-// import Link from '../components/Link';
+import { Issue } from '@prisma/client';
+
 
 const IssuesPage = async () => {
   const issues = await prisma.issue.findMany();
   // await delay(3000);
+
+  const columns: 
+  { label: string;  value: keyof Issue;  className?: string;
+  }[] = [
+    { label: "Issue", value: "title" },
+    { label: "Status", value: "status", className: "hidden md:table-cell",    },
+    { label: "Created", value: "createdAt", className: "hidden md:table-cell",  },
+  ];
 
   return (
     
