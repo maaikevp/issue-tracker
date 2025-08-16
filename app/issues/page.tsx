@@ -6,12 +6,14 @@ import { IssueStatusBadge } from '@/app/components';
 import { Table } from '@radix-ui/themes';
 import { Issue, Status } from '@prisma/client';
 import { url } from 'inspector/promises';
+import { ArrowUpIcon } from '@radix-ui/react-icons';
+import NextLink from 'next/link';
 
 
-type SearchParams = Promise<{ status: Status }>;
+type SearchParams = Promise<{ status: Status, orderBy: keyof Issue }>;
 
 interface Props {
-  searchParams: SearchParams;
+  searchParams: SearchParams, orderBy: keyof Issue
 }
 
 export default async function IssuesPage (props: Props) {
@@ -50,10 +52,15 @@ export default async function IssuesPage (props: Props) {
     <Table.Root variant='surface' className='mt-5'>
       <Table.Header>
         <Table.Row>
-          <Table.ColumnHeaderCell >Issue</Table.ColumnHeaderCell>
-          <Table.ColumnHeaderCell className='hidden md:table-cell'>Status</Table.ColumnHeaderCell>
-          <Table.ColumnHeaderCell className='hidden md:table-cell'>Created</Table.ColumnHeaderCell>
-        </Table.Row>
+            {columns.map((column) => (
+              <Table.ColumnHeaderCell key={column.value}>
+                <NextLink href={{
+                  query: { ...searchParams, orderBy: column.value }                  
+                }}>{column.label}</NextLink>
+                {column.value === searchParams.orderBy && <ArrowUpIcon className="inline"/>}
+              </Table.ColumnHeaderCell>
+            ))}
+          </Table.Row>
       </Table.Header>
       <Table.Body>
         {issues.map(issue => ( 
