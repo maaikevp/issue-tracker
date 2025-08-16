@@ -1,13 +1,33 @@
+
 import { prisma } from '@/prisma/client';
 import { Container, Link } from '@radix-ui/themes';
 import  IssueActions from './IssueActions';
 import { IssueStatusBadge } from '@/app/components';
 import { Table } from '@radix-ui/themes';
-import { Issue } from '@prisma/client';
+import { Issue, Status } from '@prisma/client';
+import { url } from 'inspector/promises';
 
 
-const IssuesPage = async () => {
-  const issues = await prisma.issue.findMany();
+type SearchParams = Promise<{ status: Status }>;
+
+interface Props {
+  searchParams: SearchParams;
+}
+
+export default async function IssuesPage (props: Props) {
+  const searchParams = await props.searchParams;
+  const statuses = Object.values(Status);
+
+  const status = statuses.includes(searchParams.status)
+    ? searchParams.status
+    : undefined;
+
+  const issues = await prisma.issue.findMany({
+    where: {
+      status,
+    },
+  });
+
   // await delay(3000);
 
   const columns: 
@@ -17,6 +37,10 @@ const IssuesPage = async () => {
     { label: "Status", value: "status", className: "hidden md:table-cell",    },
     { label: "Created", value: "createdAt", className: "hidden md:table-cell",  },
   ];
+
+
+  // const status = searchParams.get('status')
+
 
   return (
     
@@ -50,4 +74,4 @@ const IssuesPage = async () => {
 
 export const dynamic = 'force-dynamic';
 
-export default IssuesPage
+// export default IssuesPage

@@ -9,23 +9,38 @@ import DeleteIssueButton from './DeleteIssueButton';
 import { getServerSession } from 'next-auth';
 import authOptions from '@/app/auth/authOptions';
 import AssigneeSelect from './AssigneeSelect';
+import React from 'react';
 
 
 interface Props {
   params: { id: string }
 }
 
+
+
 const IssueDetailPage = async ({ params }: Props) => {
   const session = await getServerSession(authOptions);
 
+  // params: Promise<{ id: string }>;
+
+  if (!params?.id || isNaN(Number(params.id))) {
+    throw new Error("Invalid or missing issue ID");}
+
+  const { id } = await params;
+
+  console.log("IssueDetailPage params", params);
+
+  // const resolvedParams:  { id: string } = React.use(params);
+
   const issue = await prisma.issue.findUnique({
-    where: { id: parseInt(params.id)}
+    where: {
+      id : parseInt( await params.id)}
   });
 
   if (!issue)
     notFound();
 
-  await delay(3000);
+  // await delay(3000);
 
 
   return (
