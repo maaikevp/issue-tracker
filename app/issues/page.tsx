@@ -8,6 +8,7 @@ import { Issue, Status } from '@prisma/client';
 import { url } from 'inspector/promises';
 import { ArrowUpIcon } from '@radix-ui/react-icons';
 import NextLink from 'next/link';
+import Pagination from '../components/Pagination';
 
   const columns: 
   { label: string;  value: keyof Issue;  className?: string;
@@ -17,10 +18,10 @@ import NextLink from 'next/link';
     { label: "Created", value: "createdAt", className: "hidden md:table-cell",  },
   ];
 
-type SearchParams = Promise<{ status: Status, orderBy: keyof Issue }>;
+type SearchParams = Promise<{ status: Status, orderBy: keyof Issue, page: string }>;
 
 interface Props {
-  searchParams: SearchParams, orderBy: keyof Issue
+  searchParams: SearchParams, orderBy: keyof Issue, page: string
 }
 
 export default async function IssuesPage (props: Props) {
@@ -30,18 +31,25 @@ export default async function IssuesPage (props: Props) {
   const status = statuses.includes(searchParams.status)
     ? searchParams.status
     : undefined;
+  const where = { status } ;
 
   const orderBy = columns.map(column => column.value)
     .includes(searchParams.orderBy)
     ? { [searchParams.orderBy]: 'asc' }
-    : undefined;
+    : undefined; 
+
+  const page  = parseInt(searchParams.page) || 1;
+  const pageSize = 10;
+
 
   const issues = await prisma.issue.findMany({
-    where: {
-      status,
-    },
-    orderBy
+    where,
+    orderBy,
+    skip: (page - 1) * pageSize,
+    take: pageSize
   });
+
+  const issueCount = await prisma.issue.count({where})
 
   // await delay(3000);
 
@@ -78,6 +86,10 @@ export default async function IssuesPage (props: Props) {
         ))}
         </Table.Body>
         </Table.Root>
+        <Pagination
+        pageSize={pageSize}
+        currentPage={page}
+        itemCount={issueCount}/>
      </Container>
     </div>
   )
