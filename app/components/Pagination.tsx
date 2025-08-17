@@ -36,7 +36,7 @@ const Pagination = ({itemCount,pageSize, currentPage}: Props) => {
 
   return (
     <div>
-        <Flex  align="center" gap="2">
+        <Flex  align="center" gap="2" pt="3">
         <Text size="2">Page {currentPage} of {pageCount}</Text>
         <Button color="gray" variant="soft" disabled={currentPage === 1}
             onClick={() => changePage(1)}>
