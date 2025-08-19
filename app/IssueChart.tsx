@@ -2,8 +2,9 @@
 'use client' 
 
 
+import { Card } from '@radix-ui/themes';
 import React from 'react'
-import { BarChart, Bar, XAxis, YAxis } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer } from 'recharts';
 
 
 interface Props {
@@ -19,16 +20,22 @@ const IssueChart = ({open, inProgress, closed}: Props) => {
         { label:'Closed', value: closed },
     ]
 
-  return (    
-      
-  <BarChart width={600} height={300} data={data}>
-    <XAxis dataKey="label"  />
-    <YAxis />
-    <Bar dataKey="value" barSize={30}  fill="#c6d884"></Bar>      
-  </BarChart>
+  return (   
+    
+    <Card>
+      <ResponsiveContainer width="100%" height={300} >
+      <BarChart  data={data} margin={{ left: -3 }}>
+      <XAxis dataKey="label"  />
+      <YAxis />
+      <Bar dataKey="value" barSize={30}  fill="#c6d884"></Bar>      
+      </BarChart>
+      </ResponsiveContainer>
+    </Card>
+  );
+};
+
+
   
-  )
-}
 
 
 
