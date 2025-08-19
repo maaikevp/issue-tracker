@@ -7,6 +7,12 @@
   --foreground: #171717;
 }
 
+
+bar-chart {
+  --color-primary: #c6d884;
+  /* --color-primary-foreground: #ffffff; */
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
