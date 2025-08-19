@@ -46,8 +46,7 @@ const AssigneeSelect = ({issue}: {issue: Issue}) => {
                 <Select.Item value="Unassigned">Unassigned</Select.Item>
                 {users?.map(user =>  (
                 <Select.Item key={user.id} 
-                    value={user.id}>{user.name}</Select.Item> )) }     
-                
+                    value={user.id}>{user.name}</Select.Item> )) }                    
             </Select.Group>            
         </Select.Content>
     </Select.Root>
