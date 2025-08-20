@@ -24,10 +24,11 @@ const IssueChart = ({open, inProgress, closed}: Props) => {
     
     <Card>
       <ResponsiveContainer width="100%" height={300} >
-      <BarChart  data={data} margin={{ left: -3 }}>
-      <XAxis dataKey="label"  />
-      <YAxis />
-      <Bar dataKey="value" barSize={30}  fill="#c6d884"></Bar>      
+      <BarChart  data={data} >
+      <XAxis dataKey="label" className='text-xs' />
+      {/* <YAxis label="Issues"/> */}
+      <YAxis  label={{ value: 'Issues', angle: -90, position: 'insideLeft' }} />
+      <Bar dataKey="value" barSize={30}  fill="#c6d884" ></Bar>      
       </BarChart>
       </ResponsiveContainer>
     </Card>
