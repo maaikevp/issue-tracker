@@ -1,9 +1,5 @@
 import { Status } from '@prisma/client'
 import { Card, Flex, Link, Text } from '@radix-ui/themes'
-import { Label } from '@radix-ui/themes/components/context-menu'
-import { Sniglet } from 'next/font/google'
-import React from 'react'
-import { string, number } from 'zod'
 
 interface Props {
     open: number,
