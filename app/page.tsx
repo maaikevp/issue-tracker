@@ -14,6 +14,9 @@ export default async function Home() {
 
     const closed = await prisma.issue.count({ where: { status: 'CLOSED' } });
 
+    console.log("Fetched issues:", open, inProgress, closed);
+
+
       
     return (
     
