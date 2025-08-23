@@ -1,10 +1,10 @@
 
 'use client' 
 
-
-import { Card } from '@radix-ui/themes';
+import { Button, Card, Flex } from '@radix-ui/themes';
 import React from 'react'
 import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer } from 'recharts';
+import { useRouter } from 'next/navigation'
 
 
 interface Props {
@@ -19,6 +19,10 @@ const IssueChart = ({open, inProgress, closed}: Props) => {
         { label: 'In Progress', value: inProgress,  },
         { label:'Closed', value: closed },
     ]
+    const router = useRouter();
+    // router.refresh();
+    const handleReload = () => {
+    router.refresh(); }
 
   return (   
     
@@ -29,8 +33,9 @@ const IssueChart = ({open, inProgress, closed}: Props) => {
       {/* <YAxis label="Issues"/> */}
       <YAxis  label={{ value: 'Issues', angle: -90, position: 'insideLeft' }} />
       <Bar dataKey="value" barSize={30}  fill="#c6d884" ></Bar>      
-      </BarChart>
+      </BarChart>            
       </ResponsiveContainer>
+      <Button onClick={handleReload}>Refresh Page</Button> 
     </Card>
   );
 };

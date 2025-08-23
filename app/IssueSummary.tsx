@@ -7,9 +7,9 @@ interface Props {
     closed: number, 
 }
 
-
-
 const IssueSummary = ({open, inProgress, closed}: Props) => {
+    
+
     const containers :
     {   label: string,
         value: number, 
@@ -22,6 +22,8 @@ const IssueSummary = ({open, inProgress, closed}: Props) => {
 console.log("Fetched issues -open:",  open);
 console.log("Fetched issues -inprogress:",  inProgress);
 console.log("Fetched issues -closed:",  closed);
+   
+   
 
   return ( 
     <Flex gap="2"  mb="5">
@@ -29,7 +31,7 @@ console.log("Fetched issues -closed:",  closed);
         <Card key={container.label}>            
             <Flex direction="column">
                 <Link href={`/issues?status=${container.status}`} className='text-sm font-medium'>{container.label} </Link>
-                <Text size="5" className='font-bold'>{container.value}</Text>
+                <Text size="5" className='font-bold'>{container.value}</Text>                
             </Flex>
         </Card>))}
      </Flex>
