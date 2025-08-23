@@ -1,6 +1,7 @@
 import { Status } from '@prisma/client'
 import { Card, Flex, Link, Text } from '@radix-ui/themes'
 
+
 interface Props {
     open: number,
     inProgress: number,
@@ -22,6 +23,7 @@ const IssueSummary = ({open, inProgress, closed}: Props) => {
 console.log("Fetched issues -open:",  open);
 console.log("Fetched issues -inprogress:",  inProgress);
 console.log("Fetched issues -closed:",  closed);
+
    
    
 

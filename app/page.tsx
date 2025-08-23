@@ -4,29 +4,31 @@ import { Metadata } from "next";
 import IssueChart from "./IssueChart";
 import IssueSummary from "./IssueSummary";
 import LatestIssues from "./LatestIssues";
-// import { revalidatePath } from 'next/cache'
 
 
 
 export default async function Home() {     
-
  
-  await prisma.$connect();
+  // await prisma.$connect();
     
+  const groupStatus = await prisma.issue.groupBy({
+    by: ["status"],
+    _count: {
+      status: true
+    }
+  });
 
-    const open = await prisma.issue.count({ where: { status: 'OPEN' }, }) 
-    {
-    cache: 'no-store'} // Ensures no caching
+  console.log("result:", groupStatus)
 
-    const inProgress = await prisma.issue.count({ where: { status: 'IN_PROGRESS' } });
-    {
-    cache: 'no-store'}
 
-    const closed = await prisma.issue.count({ where: { status: 'CLOSED' } });
-    {
-    cache: 'no-store'}
 
-    // revalidatePath("/") //whatever path you are calling it from
+    const open = await prisma.issue.count({ where: { status: 'OPEN' }, })   ; 
+
+    const inProgress = await prisma.issue.count({ where: { status: 'IN_PROGRESS' }, });    
+
+    const closed = await prisma.issue.count({ where: { status: 'CLOSED' }, });
+
+  
 
     console.log("Fetched issues:", open, inProgress, closed);
 
