@@ -30,7 +30,7 @@ export default async function Home() {
 
   
 
-    console.log("Fetched issues:", open, inProgress, closed);
+    // console.log("Fetched issues:", open, inProgress, closed);
 
       
     return (

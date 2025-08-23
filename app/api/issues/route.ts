@@ -28,25 +28,5 @@ return NextResponse.json(newIssue, { status: 201 });
 
 
 
-// export async function GET(request: NextRequest) {
-//     const session = await getServerSession(authOptions);
-
-//     if (!session) 
-//         return NextResponse.json({}, { status: 401 }); 
 
 
-//     const open = await prisma.issue.count({ where: { status: 'OPEN' }, }) 
-//     {    cache: 'no-store'} // Ensures no caching
-
-//     const inProgress = await prisma.issue.count({ where: { status: 'IN_PROGRESS' } });
-//     {    cache: 'no-store'}
-
-//     const closed = await prisma.issue.count({ where: { status: 'CLOSED' } });
-//     {     cache: 'no-store'}
- 
-//     const statusobject = await prisma.issue.create(
-//     data: { open, inProgress, closed })
-
-
-// return NextResponse.json({open, inProgress, closed}, { status: 201 });
-// }
