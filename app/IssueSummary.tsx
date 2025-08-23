@@ -7,6 +7,8 @@ interface Props {
     closed: number, 
 }
 
+
+
 const IssueSummary = ({open, inProgress, closed}: Props) => {
     const containers :
     {   label: string,
@@ -17,7 +19,10 @@ const IssueSummary = ({open, inProgress, closed}: Props) => {
         { label: 'Closed issues', value: closed, status: 'CLOSED' },
     ]
 
-    
+console.log("Fetched issues -open:",  open);
+console.log("Fetched issues -inprogress:",  inProgress);
+console.log("Fetched issues -closed:",  closed);
+
   return ( 
     <Flex gap="2"  mb="5">
         {containers.map((container) => (
