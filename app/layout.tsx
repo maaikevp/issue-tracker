@@ -21,6 +21,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={inter.variable}>
+      <head>
+        {/* ✅ Preload with correct `as` value */}
+        <link
+          rel="preload"
+          href="/_next/static/css/a1996c54189440b4.css"
+          as="style"
+        />
+
+        {/* ✅ Or use stylesheet directly */}
+        {/* <link
+          rel="stylesheet"
+          href="/_next/static/css/a1996c54189440b4.css"
+        /> */}
+      </head>
       <body>
         <QueryClientProvider>
         <AuthProvider>

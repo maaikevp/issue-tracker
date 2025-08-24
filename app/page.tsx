@@ -20,6 +20,8 @@ export default async function Home() {
 
   console.log("result:", groupStatus)
 
+  
+
 
 
     const open = await prisma.issue.count({ where: { status: 'OPEN' }, })   ; 
