@@ -1,9 +1,6 @@
 import { Status } from '@prisma/client'
 import { Card, Flex, Link, Text } from '@radix-ui/themes'
-import { Label } from '@radix-ui/themes/components/context-menu'
-import { Sniglet } from 'next/font/google'
-import React from 'react'
-import { string, number } from 'zod'
+
 
 interface Props {
     open: number,
@@ -12,6 +9,8 @@ interface Props {
 }
 
 const IssueSummary = ({open, inProgress, closed}: Props) => {
+    
+
     const containers :
     {   label: string,
         value: number, 
@@ -21,14 +20,20 @@ const IssueSummary = ({open, inProgress, closed}: Props) => {
         { label: 'Closed issues', value: closed, status: 'CLOSED' },
     ]
 
-    
+console.log("Fetched issues -open:",  open);
+console.log("Fetched issues -inprogress:",  inProgress);
+console.log("Fetched issues -closed:",  closed);
+
+   
+   
+
   return ( 
     <Flex gap="2"  mb="5">
         {containers.map((container) => (
         <Card key={container.label}>            
             <Flex direction="column">
                 <Link href={`/issues?status=${container.status}`} className='text-sm font-medium'>{container.label} </Link>
-                <Text size="5" className='font-bold'>{container.value}</Text>
+                <Text size="5" className='font-bold'>{container.value}</Text>                
             </Flex>
         </Card>))}
      </Flex>

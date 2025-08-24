@@ -1,7 +1,7 @@
 import "@radix-ui/themes/styles.css";
 import "./globals.css";
 import NavBar from "./NavBar";
-import { Theme, ThemePanel } from "@radix-ui/themes";
+import { Theme} from "@radix-ui/themes";
 import { Inter } from "next/font/google";
 import "./theme-config.css";
 import AuthProvider from "./auth/Provider";
@@ -21,6 +21,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={inter.variable}>
+      <head>
+        {/* ✅ Preload with correct `as` value */}
+        <link
+          rel="preload"
+          href="/_next/static/css/a1996c54189440b4.css"
+          as="style"
+        />
+
+        {/* ✅ Or use stylesheet directly */}
+        {/* <link
+          rel="stylesheet"
+          href="/_next/static/css/a1996c54189440b4.css"
+        /> */}
+      </head>
       <body>
         <QueryClientProvider>
         <AuthProvider>

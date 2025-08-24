@@ -1,27 +1,45 @@
-import Image from "next/image";
-import Pagination from "./components/Pagination";
-import LatestIssues from "./LatestIssues";
-import IssueSummary from "./IssueSummary";
 import { prisma } from "@/prisma/client";
-import IssueChart from "./IssueChart";
-import { Grid, Flex } from "@radix-ui/themes";
+import { Flex, Grid } from "@radix-ui/themes";
 import { Metadata } from "next";
+import IssueChart from "./IssueChart";
+import IssueSummary from "./IssueSummary";
+import LatestIssues from "./LatestIssues";
+
 
 
 export default async function Home() {     
+ 
+  // await prisma.$connect();
+    
+  const groupStatus = await prisma.issue.groupBy({
+    by: ["status"],
+    _count: {
+      status: true
+    }
+  });
 
-    const open = await prisma.issue.count({ where: { status: 'OPEN' }, });
+  console.log("result:", groupStatus)
 
-    const inProgress = await prisma.issue.count({ where: { status: 'IN_PROGRESS' } });
+  
 
-    const closed = await prisma.issue.count({ where: { status: 'CLOSED' } });
+
+
+    const open = await prisma.issue.count({ where: { status: 'OPEN' }, })   ; 
+
+    const inProgress = await prisma.issue.count({ where: { status: 'IN_PROGRESS' }, });    
+
+    const closed = await prisma.issue.count({ where: { status: 'CLOSED' }, });
+
+  
+
+    // console.log("Fetched issues:", open, inProgress, closed);
 
       
     return (
     
     <Grid columns={{ initial: '1',  md: '2' }} gap='5'>
     <Flex direction="column">
-      <IssueSummary open={open} inProgress={inProgress} closed={closed} />      
+      <IssueSummary open={open} inProgress={inProgress} closed={closed} />         
       <IssueChart open={open} inProgress={inProgress} closed={closed} />
     </Flex>
       <LatestIssues />      
@@ -35,4 +53,6 @@ export default async function Home() {
       title: "Issue Tracker - Dashboard",
       description: "View a summary of project issues"
      }
+
+    //  export const fetchCache = 'no-store';
 

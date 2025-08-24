@@ -1,14 +1,13 @@
 'use client'
 
 
-import { Flex, Select } from '@radix-ui/themes'
-import React, { useEffect, useState } from 'react'
 import { Issue, User } from '@prisma/client';
-import axios from 'axios';
+import { Flex, Select } from '@radix-ui/themes';
 import { useQuery } from '@tanstack/react-query';
-import error from 'next/error';
-import Skeleton from 'react-loading-skeleton';
+import axios from 'axios';
+import { useState } from 'react';
 import toast, { Toaster } from "react-hot-toast";
+import Skeleton from 'react-loading-skeleton';
 
 const AssigneeSelect = ({issue}: {issue: Issue}) => {
 

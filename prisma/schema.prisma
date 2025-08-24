@@ -12,7 +12,11 @@ generator client {
 datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
+
+  relationMode = "prisma"
 }
+
+
 
 model Issue {
   id               Int      @id @default(autoincrement())
@@ -23,12 +27,18 @@ model Issue {
   updatedAt        DateTime @updatedAt
   assignedToUserId String?  @db.VarChar(255)
   assignedToUser   User?    @relation(fields: [assignedToUserId], references: [id])
+
+  
+  @@map("issues")
 }
+
 
 enum Status {
   OPEN
   IN_PROGRESS
   CLOSED
+
+  
 }
 
 model Account {
@@ -76,7 +86,7 @@ model User {
 
 model VerificationToken {
   identifier String
-  token      String
+  token      String  @unique
   expires    DateTime
 
   @@unique([identifier, token])

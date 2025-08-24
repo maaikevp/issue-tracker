@@ -45,11 +45,12 @@ body {
   display: block;
   width: 180px;
   border: none;  
-  /* justify-content: center; Horizontal alignment */
+  justify-content: center; /*Horizontal alignment*/
   align-items: center;    /* Vertical alignment */
   /* padding: 14px 28px; */
   /* font-size: 16px; */
   cursor: pointer;
-  text-align: center;
+  text-align: left;
+  
  
 }

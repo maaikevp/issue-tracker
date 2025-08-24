@@ -9,7 +9,7 @@ import { Metadata } from 'next';
 
 
 interface Props {
-  searchParams: IssueQuery}
+  searchParams: Promise<IssueQuery>}
 
   
 type SearchParams = Promise<{ status: Status, orderBy: keyof Issue, page: string }>;

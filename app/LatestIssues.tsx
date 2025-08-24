@@ -1,10 +1,7 @@
+import { prisma } from '@/prisma/client';
 import { Avatar, Card, Flex, Heading, Table } from '@radix-ui/themes';
 import Link from 'next/link';
-import React from 'react'
-import AssigneeSelect from './issues/[id]/AssigneeSelect';
-import { prisma } from '@/prisma/client';
 import IssueStatusBadge from './components/IssueStatusBadge';
-
 
 
 const LatestIssues = async () => {
@@ -13,7 +10,8 @@ const LatestIssues = async () => {
         take: 5,
         include:{
             assignedToUser: true
-        }
+        },
+        
     });
 
   return (
