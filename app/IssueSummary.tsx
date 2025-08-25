@@ -3,26 +3,26 @@ import { Card, Flex, Link, Text } from '@radix-ui/themes'
 
 
 interface Props {
-    open: number,
-    inProgress: number,
-    closed: number, 
+    open_issue: number,
+    inProgress_issue: number,
+    closed_issue: number, 
 }
 
-const IssueSummary = ({open, inProgress, closed}: Props) => {
+const IssueSummary = ({open_issue, inProgress_issue, closed_issue}: Props) => {
     
 
     const containers :
     {   label: string,
         value: number, 
         status: Status}[] =  [
-        { label: 'Open issues', value: open, status: 'OPEN' },
-        { label: 'In Progress issues', value: inProgress, status: 'IN_PROGRESS' },
-        { label: 'Closed issues', value: closed, status: 'CLOSED' },
+        { label: 'Open issues', value: open_issue, status: 'OPEN' },
+        { label: 'In Progress issues', value: inProgress_issue, status: 'IN_PROGRESS' },
+        { label: 'Closed issues', value: closed_issue, status: 'CLOSED' },
     ]
 
-console.log("Fetched issues -open:",  open);
-console.log("Fetched issues -inprogress:",  inProgress);
-console.log("Fetched issues -closed:",  closed);
+console.log("Fetched issues -open:",  open_issue);
+console.log("Fetched issues -inprogress:",  inProgress_issue);
+console.log("Fetched issues -closed:",  closed_issue);
 
    
    

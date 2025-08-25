@@ -4,15 +4,27 @@ import Link from 'next/link';
 import IssueStatusBadge from './components/IssueStatusBadge';
 
 
-const LatestIssues = async () => {
-    const issues = await prisma.issue.findMany({
-        orderBy: { createdAt: 'asc'    },
+export default async function LatestIssues () {
+const issues = await prisma.issue.findMany({
+  
+    orderBy: { createdAt: 'asc'    },
         take: 5,
         include:{
             assignedToUser: true
         },
-        
-    });
+  });
+
+
+
+
+// const LatestIssues = async () => {
+//     const issues = await prisma.issue.findMany({
+//         orderBy: { createdAt: 'asc'    },
+//         take: 5,
+//         include:{
+//             assignedToUser: true
+//         },        
+//     });
 
   return (
     <Card>
@@ -47,4 +59,4 @@ const LatestIssues = async () => {
   );
 };
 
-export default LatestIssues
+// export default LatestIssues

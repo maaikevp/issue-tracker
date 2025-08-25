@@ -8,16 +8,16 @@ import { useRouter } from 'next/navigation'
 
 
 interface Props {
-    open: number,
-    inProgress: number,
-    closed: number, 
+    open_issue: number,
+    inProgress_issue: number,
+    closed_issue: number, 
 }
 
-const IssueChart = ({open, inProgress, closed}: Props) => {
+const IssueChart = ({open_issue, inProgress_issue, closed_issue}: Props) => {
     const data =[
-        { label: 'Open', value: open, },
-        { label: 'In Progress', value: inProgress,  },
-        { label:'Closed', value: closed },
+        { label: 'Open', value: open_issue, },
+        { label: 'In Progress', value: inProgress_issue,  },
+        { label:'Closed', value: closed_issue },
     ]
     const router = useRouter();
     // router.refresh();

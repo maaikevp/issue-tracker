@@ -6,41 +6,23 @@ import IssueSummary from "./IssueSummary";
 import LatestIssues from "./LatestIssues";
 
 
-
-export default async function Home() {     
- 
+export default async function Home() {      
   // await prisma.$connect();
-    
-  const groupStatus = await prisma.issue.groupBy({
-    by: ["status"],
-    _count: {
-      status: true
-    }
-  });
+    const open_issue = await prisma.issue.count({ 
+      where: { status: 'OPEN' }, })   ; 
 
-  console.log("result:", groupStatus)
+    const inProgress_issue = await prisma.issue.count({ 
+      where: { status: 'IN_PROGRESS' }, });    
 
-  
-
-
-
-    const open = await prisma.issue.count({ where: { status: 'OPEN' }, })   ; 
-
-    const inProgress = await prisma.issue.count({ where: { status: 'IN_PROGRESS' }, });    
-
-    const closed = await prisma.issue.count({ where: { status: 'CLOSED' }, });
-
-  
-
-    // console.log("Fetched issues:", open, inProgress, closed);
+    const closed_issue = await prisma.issue.count({ 
+      where: { status: 'CLOSED' }, });
 
       
-    return (
-    
+    return (    
     <Grid columns={{ initial: '1',  md: '2' }} gap='5'>
     <Flex direction="column">
-      <IssueSummary open={open} inProgress={inProgress} closed={closed} />         
-      <IssueChart open={open} inProgress={inProgress} closed={closed} />
+      <IssueSummary open_issue={open_issue} inProgress_issue={inProgress_issue} closed_issue={closed_issue} />         
+      <IssueChart open_issue={open_issue} inProgress_issue={inProgress_issue} closed_issue={closed_issue} />
     </Flex>
       <LatestIssues />      
     </Grid>
@@ -56,3 +38,17 @@ export default async function Home() {
 
     //  export const fetchCache = 'no-store';
 
+     // console.log("Fetched issues:", open, inProgress, closed);
+
+
+         
+  const groupStatus = await prisma.issue.groupBy({
+    by: ["status"],
+    _count: {
+      status: true
+    }
+  });
+
+    // console.log("result:", groupStatus) 
+     
+    export const dynamic = 'force-dynamic';
