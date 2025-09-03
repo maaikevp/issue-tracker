@@ -34,3 +34,18 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+
+## Description of the actual issue tracker app
+
+A streamlined tool for managing bugs, tasks, and feature requests with precision. Users can log in securely via OAuth, create and modify issues, assign them to team members, and track progress across open, in-progress, and closed states. With a clean interface and real-time updates, it is built for fast-moving teams who need clarity and control. Systems and programs used:
+
+* NextJS
+* NextAuth
+* HTML, CSS, Radix UI
+* Prisma, MySQL
+
+
+## Screenshot of app
+
+![Issue Tracker Screenshot](./public/screenshot.png)
