@@ -48,4 +48,4 @@ A streamlined tool for managing bugs, tasks, and feature requests with precision
 
 ## Screenshot of app
 
-![Issue Tracker Screenshot](./public/screenshot.png)
+![Issue Tracker Screenshot](./public/Screenshot.png)
