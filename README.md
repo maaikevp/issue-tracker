@@ -1,4 +1,39 @@
+
+## Description of the Issue tracker app
+
+A streamlined tool for managing bugs, tasks, and feature requests with precision. Users can log in securely via OAuth, create and modify issues, assign them to team members, and track progress across open, in-progress, and closed states. With a clean interface and real-time updates, it is built for fast-moving teams who need clarity and control. Systems and programs used:
+
+* NextJS
+* NextAuth
+* HTML, CSS, Radix UI
+* Prisma, MySQL
+
+<br>
+
+### Issuetracker link
+
+App URL: https://issue-tracker-production-817e.up.railway.app/
+
+<br>
+<br>
+
+
+
+### Screenshot of app
+
+![Issue Tracker Screenshot](./public/Screenshot.png)
+
+
+
+
+<br>
+<br>
+<br>
+
+# How to do this yourself
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+
 
 ## Getting Started
 
@@ -36,16 +71,3 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
 
-## Description of the actual issue tracker app
-
-A streamlined tool for managing bugs, tasks, and feature requests with precision. Users can log in securely via OAuth, create and modify issues, assign them to team members, and track progress across open, in-progress, and closed states. With a clean interface and real-time updates, it is built for fast-moving teams who need clarity and control. Systems and programs used:
-
-* NextJS
-* NextAuth
-* HTML, CSS, Radix UI
-* Prisma, MySQL
-
-
-## Screenshot of app
-
-![Issue Tracker Screenshot](./public/Screenshot.png)
