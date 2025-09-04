@@ -35,7 +35,7 @@ const IssueChart = ({open_issue, inProgress_issue, closed_issue}: Props) => {
       <Bar dataKey="value" barSize={30}  fill="#c6d884" ></Bar>      
       </BarChart>            
       </ResponsiveContainer>
-      <Button onClick={handleReload}>Refresh Page</Button> 
+      {/* <Button onClick={handleReload}>Refresh Page</Button>  */}
     </Card>
   );
 };
