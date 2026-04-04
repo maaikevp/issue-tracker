@@ -12,7 +12,7 @@ A streamlined tool for managing bugs, tasks, and feature requests with precision
 
 ### Issuetracker link
 
-App URL: https://issue-tracker-production-817e.up.railway.app/
+App URL: https://issue-tracker-production-817ee.up.railway.app/
 
 <br>
 <br>
